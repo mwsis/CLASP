@@ -69,13 +69,13 @@ static FILE* Test_stderr = Real_stderr; /* NOTE: this assignment here is solely 
 namespace
 {
 
-    static void test_1_0(void);
-    static void test_1_1(void);
-    static void test_1_1_unrecognised(void);
-    static void test_1_2(void);
-    static void test_1_3(void);
-    static void test_1_4(void);
-    static void test_1_6(void);
+    static void test_1_0();
+    static void test_1_1();
+    static void test_1_1_unrecognised();
+    static void test_1_2();
+    static void test_1_3();
+    static void test_1_4();
+    static void test_1_6();
 } // anonymous namespace
 
 

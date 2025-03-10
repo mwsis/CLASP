@@ -69,10 +69,10 @@ static FILE* Test_stderr = Real_stderr; /* NOTE: this assignment here is solely 
 namespace
 {
 
-    static void test_1_0(void);
-    static void test_1_1(void);
-    static void test_1_2(void);
-    static void test_1_3(void);
+    static void test_1_0();
+    static void test_1_1();
+    static void test_1_2();
+    static void test_1_3();
 
 } // anonymous namespace
 
@@ -148,8 +148,8 @@ static void run_test_(
     Test_stderr         =   ::fopen(Test_path, "w");
 
     /* TODO: enhance xTests such that can pass file/line to (variants of) common test macros */
-    ((void)&file);
-    ((void)&line);
+    (()&file);
+    (()&line);
 
 
     if (NULL == Test_stderr)

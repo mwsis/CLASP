@@ -52,31 +52,31 @@
 namespace
 {
 
-    static void test_1_0(void);
-    static void test_1_1(void);
-    static void test_1_2(void);
-    static void test_1_3(void);
-    static void test_1_4(void);
-    static void test_1_5(void);
-    static void test_1_6(void);
-    static void test_1_7(void);
-    static void test_1_10(void);
-    static void test_1_14(void);
-    static void test_1_15(void);
+    static void test_1_0();
+    static void test_1_1();
+    static void test_1_2();
+    static void test_1_3();
+    static void test_1_4();
+    static void test_1_5();
+    static void test_1_6();
+    static void test_1_7();
+    static void test_1_10();
+    static void test_1_14();
+    static void test_1_15();
 
-    static void test_2_01(void);
-    static void test_2_01_c(void);
-    static void test_2_02(void);
-    static void test_2_03(void);
-    static void test_2_04(void);
-    static void test_2_05(void);
-    static void test_2_07(void);
-    static void test_2_08(void);
-    static void test_2_09(void);
-    static void test_2_10(void);
-    static void test_2_11(void);
-    static void test_2_12(void);
-    static void test_2_13(void);
+    static void test_2_01();
+    static void test_2_01_c();
+    static void test_2_02();
+    static void test_2_03();
+    static void test_2_04();
+    static void test_2_05();
+    static void test_2_07();
+    static void test_2_08();
+    static void test_2_09();
+    static void test_2_10();
+    static void test_2_11();
+    static void test_2_12();
+    static void test_2_13();
 } // anonymous namespace
 
 
@@ -744,7 +744,7 @@ static void test_2_01_c()
     }
 }
 
-static void test_2_02(void)
+static void test_2_02()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -810,7 +810,7 @@ static void test_2_02(void)
     }
 }
 
-static void test_2_03(void)
+static void test_2_03()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -875,7 +875,7 @@ static void test_2_03(void)
     }
 }
 
-static void test_2_04(void)
+static void test_2_04()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -941,7 +941,7 @@ static void test_2_04(void)
     }
 }
 
-static void test_2_05(void)
+static void test_2_05()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -1006,7 +1006,7 @@ static void test_2_05(void)
     }
 }
 
-static void test_2_07(void)
+static void test_2_07()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -1067,7 +1067,7 @@ static void test_2_07(void)
     }
 }
 
-static void test_2_08(void)
+static void test_2_08()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -1114,7 +1114,7 @@ static void test_2_08(void)
     }
 }
 
-static void test_2_09(void)
+static void test_2_09()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -1167,7 +1167,7 @@ static void test_2_09(void)
     }
 }
 
-static void test_2_10(void)
+static void test_2_10()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -1220,7 +1220,7 @@ static void test_2_10(void)
     }
 }
 
-static void test_2_11(void)
+static void test_2_11()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -1273,7 +1273,7 @@ static void test_2_11(void)
     }
 }
 
-static void test_2_12(void)
+static void test_2_12()
 {
     static clasp::specification_t const Specifications[] =
     {
@@ -1326,7 +1326,7 @@ static void test_2_12(void)
     }
 }
 
-static void test_2_13(void)
+static void test_2_13()
 {
     static clasp::specification_t const Specifications[] =
     {
