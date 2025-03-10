@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:    test.unit.usage_width/entry.cpp
+ * File:    test.unit.usage/entry.cpp
  *
  * Purpose: Unit-tests usage-width functionality
  *
@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 
     XTESTS_COMMANDLINE_PARSEVERBOSITY(argc, argv, &verbosity);
 
-    if (XTESTS_START_RUNNER("test.unit.usage_width", verbosity))
+    if (XTESTS_START_RUNNER("test.unit.usage", verbosity))
     {
         XTESTS_RUN_CASE(test_null_specifications);
         XTESTS_RUN_CASE(test_empty_specifications);
