@@ -148,8 +148,8 @@ static void run_test_(
     Test_stderr         =   ::fopen(Test_path, "w");
 
     /* TODO: enhance xTests such that can pass file/line to (variants of) common test macros */
-    (()&file);
-    (()&line);
+    STLSOFT_SUPPRESS_UNUSED(file);
+    STLSOFT_SUPPRESS_UNUSED(line);
 
 
     if (NULL == Test_stderr)
