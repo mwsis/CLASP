@@ -10,13 +10,17 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////
+ * includes
+ */
+
+/* /////////////////////////////////////
  * test component header file include(s)
  */
 
 #include <clasp/clasp.h>
 
-/* /////////////////////////////////////////////////////////////////////////
- * includes
+/* /////////////////////////////////////
+ * general includes
  */
 
 /* xTests header files */
@@ -36,6 +40,7 @@
 /* Standard C header files */
 #include <stdlib.h>
 
+
 /* /////////////////////////////////////////////////////////////////////////
  * forward declarations
  */
@@ -53,8 +58,8 @@ namespace
     static void test_one_option_one_flag();
     static void test_single_flag_changing_positiveTabSizes();
     static void test_single_flag_changing_consoleWidths();
-
 } // anonymous namespace
+
 
 /* /////////////////////////////////////////////////////////////////////////
  * main
@@ -94,8 +99,8 @@ int main(int argc, char **argv)
 
 namespace
 {
-    typedef std::string             string_t;
-    typedef std::vector<string_t>   strings_t;
+    typedef std::string                                     string_t;
+    typedef std::vector<string_t>                           strings_t;
 
     static
     strings_t
@@ -109,7 +114,7 @@ namespace
         using namespace ::xtests::cpp::util;
 
         temp_file   temp(temp_file::DeleteOnOpen | temp_file::DeleteOnClose);
-        FILE*       stm = ::fopen(temp.c_str(), "w");
+        FILE* const stm = ::fopen(temp.c_str(), "w");
 
         if (NULL == stm)
         {
@@ -120,15 +125,15 @@ namespace
             stlsoft::scoped_handle<FILE*> scoper(stm, ::fclose);
 
             clasp_showBody(
-                    NULL
-                ,   specifications
-                ,   clasp_showBodyByFILE
-                ,   stm
-                ,   0
-                ,   tabSize
-                ,   consoleWidth
-                ,   showBlanksBetweenItems
-                );
+                NULL
+            ,   specifications
+            ,   clasp_showBodyByFILE
+            ,   stm
+            ,   0
+            ,   tabSize
+            ,   consoleWidth
+            ,   showBlanksBetweenItems
+            );
 
             scoper.close();
 
@@ -138,8 +143,7 @@ namespace
             >                                               file_lines_t;
 
             file_lines_t    file_lines(temp.c_str());
-
-            strings_t   lines;
+            strings_t       lines;
 
             lines.reserve(file_lines.size());
 
