@@ -4,7 +4,7 @@
  * Purpose: Illustrates a minimal use of CLASP in a C program.
  *
  * Created: 9th March 2025
- * Updated: 10th March 2025
+ * Updated: 11th March 2025
  *
  * ////////////////////////////////////////////////////////////////////// */
 
@@ -101,7 +101,7 @@ int main1(clasp_arguments_t const* args)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     unsigned const cflags = 0;
 

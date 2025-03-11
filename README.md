@@ -122,7 +122,7 @@ int main1(clasp_arguments_t const* args)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     unsigned const cflags = 0;
 
@@ -204,7 +204,7 @@ int main1(clasp_arguments_t const* args)
     return EXIT_SUCCESS;
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
     unsigned const cflags = 0;
 
