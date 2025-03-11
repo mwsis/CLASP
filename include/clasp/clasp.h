@@ -4,7 +4,7 @@
  * Purpose: The CLASP library API.
  *
  * Created: 4th June 2008
- * Updated: 10th March 2025
+ * Updated: 11th March 2025
  *
  * Home:    https://github.com/synesissoftware/CLASP/
  *
@@ -54,8 +54,8 @@
 #ifndef CLASP_DOCUMENTATION_SKIP_SECTION
 # define CLASP_VER_CLASP_H_CLASP_MAJOR      3
 # define CLASP_VER_CLASP_H_CLASP_MINOR      3
-# define CLASP_VER_CLASP_H_CLASP_REVISION   2
-# define CLASP_VER_CLASP_H_CLASP_EDIT       107
+# define CLASP_VER_CLASP_H_CLASP_REVISION   3
+# define CLASP_VER_CLASP_H_CLASP_EDIT       109
 #endif /* !CLASP_DOCUMENTATION_SKIP_SECTION */
 
 /**
@@ -76,9 +76,9 @@
 #define CLASP_VER_MINOR     15
 #define CLASP_VER_PATCH     0
 #define CLASP_VER_REVISION  CLASP_VER_PATCH
-#define CLASP_VER_AB        0x45
+#define CLASP_VER_AB        0x46
 
-#define CLASP_VER           0x000f0045
+#define CLASP_VER           0x000f0046
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -163,8 +163,10 @@
 
 #if defined(__cplusplus) || \
     defined(CLASP_DOCUMENTATION_SKIP_SECTION)
+
 # define CLASP_EXTERN_C                                     extern "C"
 #else /* ? __cplusplus */
+
 # define CLASP_EXTERN_C                                     extern
 #endif /* !__cplusplus */
 
@@ -1390,7 +1392,9 @@ typedef struct clasp_tool_t                                 clasp_tool_t;
  */
 struct clasp_usageinfo_t
 {
+    /** The version information. */
     clasp_versioninfo_t     version;
+    /** The tool name / program name. */
     clasp_char_t const*     toolName;
     clasp_char_t const*     summary;
     clasp_char_t const*     copyright;
@@ -1419,6 +1423,43 @@ typedef struct clasp_usageinfo_t                            clasp_usageinfo_t;
 #endif /* !__cplusplus */
 
 
+/** Displays usage (aka help) information for the program, according to the
+ * given parameters.
+ *
+ * \param args The arguments obtained from parsing the command-line. May not
+ *  be NULL;
+ * \param specifications The specifications used in parsing the
+ *  command-line. May be NULL, in which case it will be inferred from args;
+ * \param toolName The program name. May be NULL, in which case it will be
+ *  inferred from the process-name (via args);
+ * \param summary A string to stand as a summary line. May be NULL as long
+ *  as pfnHeader is compatible with that;
+ * \param copyright A string to stand as a copyright line. May be NULL as
+ *  long as pfnHeader is compatible with that;
+ * \param description A string to stand as a description line. May be NULL
+ *  as long as pfnHeader is compatible with that;
+ * \param usage A string to stand as a usage line. May be NULL, in which
+ *  case the CLASP API will supply a pro-forma string (taking into account
+ *  whether specifications contains any flags and/or options). May also
+ *  contain the string ":program:", in which case the value of toolName
+ *  (including if it was inferred) will be used as replacement;
+ * \param major The major version number;
+ * \param minor The minor version number;
+ * \param revision The patch/revision version number;
+ * \param pfnHeader The callback function to write the header structure. The
+ *  stock function clasp_showHeaderByFILE() is provided, in which case the
+ *  value stdout should be passed for param;
+ * \param pfnBody The callback function to write the body structure. The
+ *  stock function clasp_showBodyByFILE() is provided, in which case the
+ *  value stdout should be passed for param;
+ * \param param User-defined parameter to be passed to \c pfnHeader and \c pfnBody;
+ * \param flags Flags that moderate the behaviour of the function;
+ * \param consoleWidth The width, in characters, of the console. STLSoft users may use the return value of <code>platformstl_C_get_console_width()</code> (part of the <a href="http://stlsoft.org/">STLSoft</a> libraries);
+ * \param tabSize The size of tabs on the console. If less than 1 then <code>-tabSize</code> spaces are used instead of a tab character;
+ * \param blanksBetweenItems The number of blank lines to insert between each item;
+ *
+ * \retval 0 The operation completed successfully;
+ */
 CLASP_CALL(int)
 clasp_showUsage(
     clasp_arguments_t const*        args
@@ -1440,15 +1481,49 @@ clasp_showUsage(
 ,   int                             blanksBetweenItems
 );
 
+/** Displays header part of the usage (aka help) information for the
+ * program, according to the given parameters.
+ *
+ * \param args The arguments obtained from parsing the command-line. May not
+ *  be NULL;
+ * \param specifications The specifications used in parsing the
+ *  command-line. May be NULL, in which case it will be inferred from args;
+ * \param toolName The program name. May be NULL, in which case it will be
+ *  inferred from the process-name (via args);
+ * \param summary A string to stand as a summary line. May be NULL as long
+ *  as pfnHeader is compatible with that;
+ * \param copyright A string to stand as a copyright line. May be NULL as
+ *  long as pfnHeader is compatible with that;
+ * \param description A string to stand as a description line. May be NULL
+ *  as long as pfnHeader is compatible with that;
+ * \param usage A string to stand as a usage line. May be NULL, in which
+ *  case the CLASP API will supply a pro-forma string (taking into account
+ *  whether specifications contains any flags and/or options). May also
+ *  contain the string ":program:", in which case the value of toolName
+ *  (including if it was inferred) will be used as replacement;
+ * \param major The major version number;
+ * \param minor The minor version number;
+ * \param revision The patch/revision version number;
+ * \param pfnHeader The callback function to write the header structure. The
+ *  stock function clasp_showHeaderByFILE() is provided, in which case the
+ *  value stdout should be passed for param;
+ * \param param User-defined parameter to be passed to \c pfnHeader;
+ * \param flags Flags that moderate the behaviour of the function;
+ * \param consoleWidth The width, in characters, of the console. STLSoft users may use the return value of <code>platformstl_C_get_console_width()</code> (part of the <a href="http://stlsoft.org/">STLSoft</a> libraries);
+ * \param tabSize The size of tabs on the console. If less than 1 then <code>-tabSize</code> spaces are used instead of a tab character;
+ * \param blanksBetweenItems The number of blank lines to insert between each item;
+ *
+ * \retval 0 The operation completed successfully;
+ */
 CLASP_CALL(int)
 clasp_showHeader(
     clasp_arguments_t const*        args
 ,   clasp_specification_t const     specifications[]
-,   clasp_char_t const*             toolName
-,   clasp_char_t const*             summary
-,   clasp_char_t const*             copyright
-,   clasp_char_t const*             description
-,   clasp_char_t const*             usage
+,   clasp_char_t const*             toolName    /* "rcp" */
+,   clasp_char_t const*             summary     /* "SystemTools (http://systemtools.sourceforge.net/)" */
+,   clasp_char_t const*             copyright   /* "Copyright (c) XXXX. All rights reserved" */
+,   clasp_char_t const*             description /* "Recursively copies files" */
+,   clasp_char_t const*             usage       /* ":program: [ ... options ... ] <src-spec> <dest-spec>" */
 ,   int                             major
 ,   int                             minor
 ,   int                             revision
@@ -1460,16 +1535,23 @@ clasp_showHeader(
 ,   int                             blanksBetweenItems
 );
 
-/**
+/** Displays body part of the usage (aka help) information for the
+ * program, according to the given parameters.
  *
- * \param args The arguments obtained from parsing the command-line. May be NULL;
- * \param specifications The specifications used in parsing the command-line;
+ * \param args The arguments obtained from parsing the command-line. May not
+ *  be NULL;
+ * \param specifications The specifications used in parsing the
+ *  command-line. May be NULL, in which case it will be inferred from args;
+ * \param pfnBody The callback function to write the body structure. The
+ *  stock function clasp_showBodyByFILE() is provided, in which case the
+ *  value stdout should be passed for param;
  * \param param User-defined parameter to be passed to \c pfnBody;
  * \param flags Flags that moderate the behaviour of the function;
  * \param consoleWidth The width, in characters, of the console. STLSoft users may use the return value of <code>platformstl_C_get_console_width()</code> (part of the <a href="http://stlsoft.org/">STLSoft</a> libraries);
  * \param tabSize The size of tabs on the console. If less than 1 then <code>-tabSize</code> spaces are used instead of a tab character;
  * \param blanksBetweenItems The number of blank lines to insert between each item;
  *
+ * \retval 0 The operation completed successfully;
  */
 CLASP_CALL(int)
 clasp_showBody(
@@ -1483,6 +1565,24 @@ clasp_showBody(
 ,   int                             blanksBetweenItems
 );
 
+/** Displays version information for the program, according to the given
+ * parameters.
+ *
+ * \param args The arguments obtained from parsing the command-line. May not
+ *  be NULL;
+ * \param toolName The program name. May be NULL, in which case it will be
+ *  inferred from the process-name (via args);
+ * \param major The major version number;
+ * \param minor The minor version number;
+ * \param revision The patch/revision version number;
+ * \param pfnVersion The callback function to write the version structure.
+ *  The stock function clasp_showVersionByFILE() is provided, in which case
+ *  the value stdout should be passed for param;
+ * \param param User-defined parameter to be passed to \c pfnVersion;
+ * \param flags Flags that moderate the behaviour of the function;
+ *
+ * \retval 0 The operation completed successfully;
+ */
 CLASP_CALL(int)
 clasp_showVersion(
     clasp_arguments_t const*    args
@@ -1507,6 +1607,8 @@ clasp_countSpecifications(
     clasp_specification_t const specifications[]
 );
 
+#ifndef CLASP_DOCUMENTATION_SKIP_SECTION
+
 /** [DEPRECATED]
  *
  * \deprecated Instead use clasp_countSpecifications()
@@ -1515,6 +1617,7 @@ CLASP_CALL_DEPRECATED(size_t, "clasp_countAliases() is deprecated and will be re
 clasp_countAliases(
     clasp_specification_t const specifications[]
 );
+#endif /* !CLASP_DOCUMENTATION_SKIP_SECTION */
 
 
 /**  Stock function that shows version to a <code>FILE*</code>

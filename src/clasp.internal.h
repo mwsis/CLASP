@@ -4,7 +4,7 @@
  * Purpose: CLASP internal common header.
  *
  * Created: 4th June 2008
- * Updated: 9th March 2025
+ * Updated: 11th March 2025
  *
  * Home:    https://github.com/synesissoftware/CLASP/
  *
@@ -75,10 +75,12 @@
 #endif /* !stlsoft_const_cast */
 
 #ifdef __cplusplus
+
 # define clasp_bool_t                                       bool
 # define clasp_true_v                                       true
 # define clasp_false_v                                      false
 #else /* ? __cplusplus */
+
 # define clasp_bool_t                                       int
 # define clasp_true_v                                       (1)
 # define clasp_false_v                                      (0)
@@ -192,6 +194,7 @@ clasp_count_flags_and_options_(
  */
 
 #ifdef CLASP_USE_WIDE_STRINGS
+
 # define clasp_fprintf_                                     fwprintf
 # define clasp_strcat_                                      wcscat
 # define clasp_strchr_                                      wcschr
@@ -202,7 +205,8 @@ clasp_count_flags_and_options_(
 # define clasp_strrchr_                                     wcsrchr
 # define clasp_strstr_                                      wcsstr
 # define CLASP_LITERAL_(x)                                  L ## x
-#else
+#else /* ? CLASP_USE_WIDE_STRINGS */
+
 # define clasp_fprintf_                                     fprintf
 # define clasp_strcat_                                      strcat
 # define clasp_strchr_                                      strchr
@@ -220,28 +224,30 @@ clasp_count_flags_and_options_(
  * string
  */
 
-/* T.B.C.
+/* Duplicates a string.
  *
- * \param ctxt T.B.C.
- * \param s T.B.C.
+ * \param ctxt The diagnostic context. May not be NULL;
+ * param s The string to be duplicated;
  */
 clasp_char_t* clasp_strdup_(
     clasp_diagnostic_context_t const*   ctxt
 ,   clasp_char_t const*                 s
 );
 
-/* T.B.C.
+/* Duplicates a string.
  *
- * \param s T.B.C.
+ * param s The string to be duplicated;
  */
 clasp_char_t* clasp_strdup_raw_(
     clasp_char_t const* s
 );
 
-/* T.B.C.
+/* This function controls whether the library recognises just an equals
+ * sign ('='), or both an equals sign '=' and a colon (':') as separating
+ * an option name and value.
  *
- * \param s T.B.C.
- * \param flags T.B.C.
+ * \param s The string to be examined;
+ * \param flags Flags that moderate the behaviour of the function;
  */
 clasp_char_t*
 clasp_strchreq_(

@@ -4,7 +4,7 @@
  * Purpose: CLASP API.
  *
  * Created: 4th June 2008
- * Updated: 9th March 2025
+ * Updated: 11th March 2025
  *
  * Home:    https://github.com/synesissoftware/CLASP/
  *
@@ -140,7 +140,7 @@ clasp_count_flags_and_options_(
     *numFlags = 0;
     *numOptions = 0;
 
-    for (clasp_specification_t const* p = specifications; CLASP_ARGTYPE_INVALID != p->type; ++p)
+    { clasp_specification_t const* p; for (p = specifications; CLASP_ARGTYPE_INVALID != p->type; ++p)
     {
         switch (p->type)
         {
@@ -158,7 +158,7 @@ clasp_count_flags_and_options_(
             ++*numOptions;
             break;
         }
-    }
+    }}
 }
 
 static
@@ -513,6 +513,7 @@ clasp_check_alias_duplicates_(
             {
                 if (NULL != from->name &&
                     NULL != to->name &&
+                    0 != clasp_strlen_(from->name) &&
                     0 == clasp_strcmp_(from->name, to->name))
                 {
                     CLASP_LOG_PRINTF(ctxt, CLASP_SEVIX_ERROR, CLASP_LITERAL_("programming error: duplicate argument alias: %s"), from->name);
@@ -845,6 +846,7 @@ clasp_calculate_sizes_(
                         if (NULL != alias)
                         {
 #if 0
+
                             clasp_char_t const* equal3;
 
                             if (NULL != alias->mappedArgument &&
